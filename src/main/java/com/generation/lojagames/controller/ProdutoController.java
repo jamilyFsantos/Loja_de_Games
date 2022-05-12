@@ -22,7 +22,7 @@ import com.generation.lojagames.repository.ProdutoRepository;
 
 @RestController
 @RequestMapping("/produto")
-@CrossOrigin
+@CrossOrigin(origins="*")
 public class ProdutoController {
 
 	@Autowired

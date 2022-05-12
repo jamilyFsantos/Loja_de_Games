@@ -1,14 +1,17 @@
 package com.generation.lojagames.model;
 
+import java.math.BigDecimal;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
+
 
 @Entity
 @Table(name="tb_produtos")
@@ -25,11 +28,17 @@ public class ProdutoModel {
 	  
 	  private int ano_lancamento;
 	  
-	  private float preco;
+	  
+	  @Column(precision = 6, scale = 2)
+	  private BigDecimal preco;
 	  
 	  @ManyToOne
 	  @JsonIgnoreProperties("produto")
 	  private CategoriaModel categorias;
+	  
+	  @ManyToOne
+	  @JsonIgnoreProperties("postagem")
+	  private Usuario usuario;
 
 	public Long getId() {
 		return id;
@@ -63,20 +72,32 @@ public class ProdutoModel {
 		this.ano_lancamento = ano_lancamento;
 	}
 
-	public float getPreco() {
+	
+
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(float preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
 
-	public CategoriaModel getCategoria() {
+	
+
+	public CategoriaModel getCategorias() {
 		return categorias;
 	}
 
-	public void setCategoria(CategoriaModel categorias) {
+	public void setCategorias(CategoriaModel categorias) {
 		this.categorias = categorias;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	  
 	  
